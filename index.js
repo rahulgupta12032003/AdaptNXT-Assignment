@@ -48,13 +48,6 @@ const puppeteer = require("puppeteer");
       );
     } catch (error) {}
 
-    //   try {
-    //     ProductCategory = await page.evaluate(
-    //       (el) => el.querySelector(".model-number ").textContent,
-    //       producthandle
-    //     );
-    //   } catch (error) {}
-
     try {
       ProductDescription = await page.evaluate(
         (el) => el.querySelector(".skuBrowseBullets").textContent,
