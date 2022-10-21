@@ -8,8 +8,7 @@ const puppeteer = require("puppeteer");
   await page.goto("https://www.quill.com/hanging-file-folders/cbk/122567.html");
 
   const productsHandles = await page.$$(".SearchResultsNew");
-
-  var i=1;
+  var i=0;
 
   for (const producthandle of productsHandles) {
     let title = "Null";
@@ -20,14 +19,16 @@ const puppeteer = require("puppeteer");
     let img = "Null";
 
     try {
-      title = await page.evaluate(
-        (el) => el.querySelector("#skuName").textContent,
-        producthandle
-      );
+      if(i<10){
+        title = await page.evaluate(
+            (el) => el.querySelector("#skuName").textContent,
+            producthandle
+          );
+        i++;  
+      }
     } catch (error) {}
 
     try {
-      i++;
       price = await page.evaluate(
         (el) => el.querySelector(".priceupdate").textContent,
         producthandle
